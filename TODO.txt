@@ -1,0 +1,2 @@
+Fredag d. 20
+- Lav UseCases til visning for klassen
