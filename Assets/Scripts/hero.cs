@@ -22,6 +22,7 @@ public class hero : MonoBehaviour {
 		rb = GetComponent<Rigidbody> ();
 		am = GetComponent<Animator> ();
 		SekTidGemt = 5;
+
 	}
 
 	void Update(){
@@ -29,22 +30,20 @@ public class hero : MonoBehaviour {
 		float Tid = Time.fixedTime;
 		int SekTid = (int)Tid;
 
+		// Movement
 		float movementHorisontal = -Input.GetAxis ("Horizontal");
 		float movementVertical = Input.GetAxis ("Vertical");
-
 		movement = new Vector3 (movementVertical * heroSpeed, 0F, movementHorisontal * heroSpeed);
-		/*
-		if (Input.GetKey (KeyCode.Space) && Time.time > nextBomb) {
-			nextBomb = Time.time + BombRate;
-			//GameObject clone = Instantiate(projectile, transform.position, transform.rotation) as GameObject;
-			Debug.Log ("Space trykkes");
-			PutBomb = true;
-		} else if (SekTid != SekTidGemt) {
-			SekTidGemt = SekTid;
-			Debug.Log (SekTid.ToString());
-		}
-		*/
 
+		if (movement != Vector3.zero) {
+			Run = true;
+			rb.AddForce (movement, ForceMode.Acceleration);
+		} else {
+			Run = false;
+			rb.velocity = Vector3.zero;
+		}
+
+		// Bomb
 		if (SekTidGemt < SekTid) {
 			AllowBomb = true;
 			SekTidGemt = SekTid;
@@ -67,23 +66,12 @@ public class hero : MonoBehaviour {
 			//PutBomb = false;
 			Debug.Log("Du må IKKE smide en bombe");
 		}
-			
 
-	}
+	} // Lukker update
 	
 	// Update is called once per frame
 	void FixedUpdate () {
-
-		// Movement
-		if (movement != Vector3.zero) {
-			Run = true;
-			rb.AddForce (movement, ForceMode.Acceleration);
-		} else {
-			Run = false;
-			rb.velocity = Vector3.zero;
-		}
-
 		am.SetBool ("Run", Run);
 		am.SetBool ("PutBomb", PutBomb);
-	}
-}
+	} // Lukker FixedUpdate
+} // Lukker class
