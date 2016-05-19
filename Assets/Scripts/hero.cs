@@ -17,10 +17,13 @@ public class hero : MonoBehaviour {
 
 	private Rigidbody rb;
 	Animator am;
+	private Spawner sp; //= new Spawner();
 
 	void Start(){
 		rb = GetComponent<Rigidbody> ();
 		am = GetComponent<Animator> ();
+		sp = GetComponent<Spawner>();
+		sp.SpawnSomethingAwesome ();
 		SekTidGemt = 5;
 
 	}
@@ -56,6 +59,7 @@ public class hero : MonoBehaviour {
 				nextBomb = Tid + BombRate;
 				PutBomb = true;
 				Debug.Log ("Smid en bombe");
+				//sp.SpawnSomethingAwesome ();
 				AllowBomb = false;
 			} else {
 				// Der er ikke trykket
