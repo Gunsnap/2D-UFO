@@ -1,2 +1,3 @@
-# 2D-UFO
-School test
+# BombZone
+
+School project by DaTho
