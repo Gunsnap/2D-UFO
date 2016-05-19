@@ -49,20 +49,22 @@ public class hero : MonoBehaviour {
 			AllowBomb = true;
 			SekTidGemt = SekTid;
 		} else {
-			AllowBomb = false;
+			//AllowBomb = false;
 		}
 
 		if (AllowBomb) {
-			if (Input.GetKey (KeyCode.Space) && Tid > nextBomb) {
+			if (Input.GetKeyDown (KeyCode.Space) && Tid > nextBomb) {
 				nextBomb = Tid + BombRate;
 				PutBomb = true;
 				Debug.Log ("Smid en bombe");
+				AllowBomb = false;
 			} else {
 				// Der er ikke trykket
+				PutBomb = false;
 				Debug.Log("Der må smides - Men der er ikke trykket");
 			}
 		} else {
-			// Gør intet
+			//PutBomb = false;
 			Debug.Log("Du må IKKE smide en bombe");
 		}
 			
