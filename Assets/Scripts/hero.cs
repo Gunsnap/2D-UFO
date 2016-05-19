@@ -25,7 +25,6 @@ public class hero : MonoBehaviour {
 		sp = GetComponent<Spawner>();
 		sp.SpawnSomethingAwesome ();
 		SekTidGemt = 5;
-
 	}
 
 	void Update(){
