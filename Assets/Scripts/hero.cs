@@ -22,8 +22,7 @@ public class hero : MonoBehaviour {
 	void Start(){
 		rb = GetComponent<Rigidbody> ();
 		am = GetComponent<Animator> ();
-		sp = GetComponent<Spawner>();
-		sp.SpawnSomethingAwesome ();
+		sp = gameObject.GetComponent<Spawner>();
 		SekTidGemt = 5;
 	}
 
@@ -58,7 +57,8 @@ public class hero : MonoBehaviour {
 				nextBomb = Tid + BombRate;
 				PutBomb = true;
 				Debug.Log ("Smid en bombe");
-				//sp.SpawnSomethingAwesome ();
+				sp.SpawnSomethingAwesome (movement);
+				Debug.Log (movement);
 				AllowBomb = false;
 			} else {
 				// Der er ikke trykket
