@@ -3,25 +3,24 @@ using System.Collections;
 
 public class hero : MonoBehaviour {
 
-	public float heroSpeed = 1f;
-
-	public bool Run;
-
-	public bool Rotate;
-	public float rotspeed = 1f;
-
-	public bool PutBomb;
-	public float BombRate = 0.5f;
-	private bool AllowBomb;
-
-	private Vector3 movement;
-	private float nextBomb = 0.0f;
-
 	static int SekTidGemt;
 
 	private Rigidbody rb;
 	Animator am;
 	private Spawner sp;
+
+	//Move
+	public float heroSpeed = 1f;
+	private Vector3 movement;
+	private bool Run;
+	public bool Rotate;
+	public float rotspeed = 1f;
+
+	//Bomb
+	public bool PutBomb;
+	public float BombRate = 0.5f;
+	private bool AllowBomb;
+	private float nextBomb = 0.0f;
 
 	void Start () {
 		rb = GetComponent<Rigidbody> ();
@@ -35,9 +34,6 @@ public class hero : MonoBehaviour {
 	}
 
 	void Update () {
-		if (Rotate) {
-			transform.Rotate (0, rotspeed, 0);
-		}
 
 		float Tid = Time.fixedTime;
 		int SekTid = (int)Tid;
@@ -54,6 +50,7 @@ public class hero : MonoBehaviour {
 			Run = false;
 			rb.velocity = Vector3.zero;
 		}
+
 
 		// Bomb
 		if (SekTidGemt < SekTid) {
@@ -81,10 +78,34 @@ public class hero : MonoBehaviour {
 			Debug.Log ("Du må IKKE smide en bombe");
 		}
 
+		// Rotate
+		if (movement != Vector3.zero) {
+			//transform.Rotate (0, rotspeed, 0);
+			//rb.MoveRotation (Quaternion.Euler (Vector3.zero));
+			Debug.Log (movement);
+			string moveStr = movement.x + "," + movement.y + "," + movement.z;
+			switch (moveStr) {
+			case "1,0,0":
+				rb.MoveRotation (Quaternion.Euler (new Vector3 (0f, 3000f, 0f)));
+				break;
+			case "-1,0,0":
+				rb.MoveRotation (Quaternion.Euler (new Vector3 (0f, 100f, 0f)));
+				break;
+			case "0,0,1":
+				rb.MoveRotation (Quaternion.Euler (new Vector3 (0f, 2000f, 0f)));
+				break;
+			case "0,0,-1":
+				rb.MoveRotation (Quaternion.Euler (new Vector3 (0f, 0f, 0f)));
+				break;
+			default:
+				break;
+			}
+		}
+
 	}
 	// Lukker update
 	
-	// Update is called once per frame
+	// FixedUpdate is called once per frame
 	void FixedUpdate () {
 		am.SetBool ("Run", Run);
 		am.SetBool ("PutBomb", PutBomb);
