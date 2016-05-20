@@ -6,6 +6,10 @@ public class hero : MonoBehaviour {
 	public float heroSpeed = 1f;
 
 	public bool Run;
+
+	public bool Rotate;
+	public float rotspeed = 1f;
+
 	public bool PutBomb;
 	public float BombRate = 0.5f;
 	private bool AllowBomb;
@@ -17,16 +21,23 @@ public class hero : MonoBehaviour {
 
 	private Rigidbody rb;
 	Animator am;
-	private Spawner sp; //= new Spawner();
+	private Spawner sp;
 
-	void Start(){
+	void Start () {
 		rb = GetComponent<Rigidbody> ();
 		am = GetComponent<Animator> ();
-		sp = gameObject.GetComponent<Spawner>();
+		sp = gameObject.GetComponent<Spawner> ();
 		SekTidGemt = 5;
 	}
 
-	void Update(){
+	public void ToggleRot () {
+		Rotate = !Rotate;
+	}
+
+	void Update () {
+		if (Rotate) {
+			transform.Rotate (0, rotspeed, 0);
+		}
 
 		float Tid = Time.fixedTime;
 		int SekTid = (int)Tid;
@@ -44,6 +55,11 @@ public class hero : MonoBehaviour {
 			rb.velocity = Vector3.zero;
 		}
 
+
+		var PlayerObject = GameObject.Find ("Player1");
+		Vector3 PlayerPos = PlayerObject.transform.position;
+		//Debug.Log (PlayerPos);
+
 		// Bomb
 		if (SekTidGemt < SekTid) {
 			AllowBomb = true;
@@ -56,25 +72,26 @@ public class hero : MonoBehaviour {
 			if (Input.GetKeyDown (KeyCode.Space) && Tid > nextBomb) {
 				nextBomb = Tid + BombRate;
 				PutBomb = true;
-				Debug.Log ("Smid en bombe");
-				sp.SpawnSomethingAwesome (movement);
-				Debug.Log (movement);
+				sp.SpawnSomethingAwesome (PlayerPos);
 				AllowBomb = false;
 			} else {
 				// Der er ikke trykket
 				PutBomb = false;
-				Debug.Log("Der må smides - Men der er ikke trykket");
+				Debug.Log ("Der må smides - Men der er ikke trykket");
 			}
 		} else {
 			//PutBomb = false;
-			Debug.Log("Du må IKKE smide en bombe");
+			Debug.Log ("Du må IKKE smide en bombe");
 		}
 
-	} // Lukker update
+	}
+	// Lukker update
 	
 	// Update is called once per frame
 	void FixedUpdate () {
 		am.SetBool ("Run", Run);
 		am.SetBool ("PutBomb", PutBomb);
-	} // Lukker FixedUpdate
-} // Lukker class
+	}
+	// Lukker FixedUpdate
+}
+// Lukker class
