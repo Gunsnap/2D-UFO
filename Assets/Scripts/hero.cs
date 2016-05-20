@@ -55,6 +55,11 @@ public class hero : MonoBehaviour {
 			rb.velocity = Vector3.zero;
 		}
 
+
+		var PlayerObject = GameObject.Find ("Player1");
+		Vector3 PlayerPos = PlayerObject.transform.position;
+		//Debug.Log (PlayerPos);
+
 		// Bomb
 		if (SekTidGemt < SekTid) {
 			AllowBomb = true;
@@ -67,9 +72,7 @@ public class hero : MonoBehaviour {
 			if (Input.GetKeyDown (KeyCode.Space) && Tid > nextBomb) {
 				nextBomb = Tid + BombRate;
 				PutBomb = true;
-				Debug.Log ("Smid en bombe");
-				sp.SpawnSomethingAwesome (movement);
-				Debug.Log (movement);
+				sp.SpawnSomethingAwesome (PlayerPos);
 				AllowBomb = false;
 			} else {
 				// Der er ikke trykket
