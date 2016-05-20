@@ -13,8 +13,6 @@ public class hero : MonoBehaviour {
 	public float heroSpeed = 1f;
 	private Vector3 movement;
 	private bool Run;
-	public bool Rotate;
-	public float rotspeed = 1f;
 
 	//Bomb
 	public bool PutBomb;
@@ -27,10 +25,6 @@ public class hero : MonoBehaviour {
 		am = GetComponent<Animator> ();
 		sp = gameObject.GetComponent<Spawner> ();
 		SekTidGemt = 5;
-	}
-
-	public void ToggleRot () {
-		Rotate = !Rotate;
 	}
 
 	void Update () {
@@ -83,8 +77,9 @@ public class hero : MonoBehaviour {
 		if (movement != Vector3.zero) {
 			//transform.Rotate (0, rotspeed, 0);
 			//rb.MoveRotation (Quaternion.Euler (Vector3.zero));
-			Debug.Log (movement);
+			//Debug.Log (movement);
 			string moveStr = movement.x + "," + movement.y + "," + movement.z;
+			//FIXME sæt tallene rigtigt
 			switch (moveStr) {
 			case "1,0,0":
 				rb.MoveRotation (Quaternion.Euler (new Vector3 (0f, 3000f, 0f)));
