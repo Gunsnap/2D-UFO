@@ -2,7 +2,6 @@
 using System.Collections;
 
 public class explodeScr : MonoBehaviour {
-	public float explodeSec = 2.5f;
 	public float putTime;
 	public float bombDelay = 3.5f;
 	public float timeNow;
@@ -26,7 +25,6 @@ public class explodeScr : MonoBehaviour {
 	}
 
 	public void removeBomb () {
-		Debug.Log ("Fjern bombe");
 		blastHallWithFire ();
 		DestroyObject (this.gameObject);
 	}
