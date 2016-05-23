@@ -24,7 +24,7 @@ public class hero : MonoBehaviour {
 		rb = GetComponent<Rigidbody> ();
 		am = GetComponent<Animator> ();
 		sp = gameObject.GetComponent<Spawner> ();
-		SekTidGemt = 5;
+		SekTidGemt = 2;
 	}
 
 	void Update () {
