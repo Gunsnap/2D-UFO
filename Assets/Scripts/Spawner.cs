@@ -6,7 +6,7 @@ using System.Collections;
 
 public class Spawner : MonoBehaviour {
 
-	public Transform[] spawnLocations;
+	//public Transform[] spawnLocations;
 	public GameObject[] whatToSpawnPrefab;
 	public GameObject[] whatToSpawnClone;
 
