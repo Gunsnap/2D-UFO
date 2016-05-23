@@ -3,7 +3,7 @@ using System.Collections;
 
 public class hero : MonoBehaviour {
 
-	static int SekTidGemt;
+	static int tidSecGemt;
 
 	private Rigidbody rb;
 	Animator am;
@@ -17,20 +17,20 @@ public class hero : MonoBehaviour {
 	//Bomb
 	public bool PutBomb;
 	public float BombRate = 0.5f;
-	private bool AllowBomb;
+	private bool allowBomb;
 	private float nextBomb = 0.0f;
 
 	void Start () {
 		rb = GetComponent<Rigidbody> ();
 		am = GetComponent<Animator> ();
 		sp = gameObject.GetComponent<Spawner> ();
-		SekTidGemt = 2;
+		tidSecGemt = 2;
 	}
 
 	void Update () {
 
-		float Tid = Time.fixedTime;
-		int SekTid = (int)Tid;
+		float tidNu = Time.fixedTime;
+		int tidNuSec = (int)tidNu;
 
 		// Movement
 		float movementHorisontal = -Input.GetAxis ("Horizontal");
@@ -49,27 +49,24 @@ public class hero : MonoBehaviour {
 		Vector3 PlayerPos = PlayerObject.transform.position;
 
 		// Bomb
-		if (SekTidGemt < SekTid) {
-			AllowBomb = true;
-			SekTidGemt = SekTid;
+		if (tidSecGemt < tidNuSec) {
+			allowBomb = true;
+			tidSecGemt = tidNuSec;
 		} else {
 			//AllowBomb = false;
 		}
 
-		if (AllowBomb) {
-			if (Input.GetKeyDown (KeyCode.Space) && Tid > nextBomb) {
-				nextBomb = Tid + BombRate;
+		if (allowBomb) {
+			if (Input.GetKeyDown (KeyCode.Space) && tidNu > nextBomb) {
+				nextBomb = tidNu + BombRate;
 				PutBomb = true;
 				sp.SpawnSomethingAwesome (PlayerPos, Vector3.zero);
-				AllowBomb = false;
+				allowBomb = false;
 			} else {
 				// Der er ikke trykket
 				PutBomb = false;
 				Debug.Log ("Der må smides - Men der er ikke trykket");
 			}
-		} else {
-			//PutBomb = false;
-			Debug.Log ("Du må IKKE smide en bombe");
 		}
 
 		// Rotate
