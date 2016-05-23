@@ -13,8 +13,10 @@ public class explodeScr : MonoBehaviour {
 
 	void Start() {
 		putTime = Time.time;
-		var BombObject = GameObject.Find (this.gameObject);
+		var BombObject = GameObject.Find (this.name);
 		BombPosition = BombObject.transform.position;
+
+		spawnFire = gameObject.GetComponent<Spawner> ();
 	}
 
 	void Update() {
@@ -22,10 +24,12 @@ public class explodeScr : MonoBehaviour {
 		if(timeNow > putTime+bombDelay) {
 			removeBomb ();
 		}
+		Debug.Log (BombPosition);
 	}
 
 	public void removeBomb() {
 		Debug.Log ("Fjern bombe");
+		blastHallWithFire();
 		DestroyObject (this.gameObject);
 	}
 
