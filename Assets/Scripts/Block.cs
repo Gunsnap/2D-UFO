@@ -17,7 +17,7 @@ public class Block : MonoBehaviour {
 			var Obj = GameObject.Find (this.name);
 			Vector3 ObjPos = Obj.transform.position;
 
-			sp.SpawnSomethingAwesome (ObjPos, 1);
+			sp.SpawnSomethingAwesome (ObjPos, Vector3.zero, 1);
 			DestroyObject (this.gameObject);
 		}
 	}

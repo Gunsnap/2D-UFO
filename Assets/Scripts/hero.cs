@@ -60,7 +60,7 @@ public class hero : MonoBehaviour {
 			if (Input.GetKeyDown (KeyCode.Space) && Tid > nextBomb) {
 				nextBomb = Tid + BombRate;
 				PutBomb = true;
-				sp.SpawnSomethingAwesome (PlayerPos);
+				sp.SpawnSomethingAwesome (PlayerPos, Vector3.zero);
 				AllowBomb = false;
 			} else {
 				// Der er ikke trykket
