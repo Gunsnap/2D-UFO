@@ -49,11 +49,6 @@ public class explodeScr : MonoBehaviour {
 		}
 
 		//End
-		/*
-		spawnFire.SpawnSomethingAwesome (Vector3.Dot(), Vector3.zero, 2);//Venstre
-		spawnFire.SpawnSomethingAwesome (new Vector3 (posX + range, posY, posZ), new Vector3 (0, 90, 0), 2);//Op
-		spawnFire.SpawnSomethingAwesome (new Vector3 (posX, posY, posZ - range), new Vector3 (0, 180, 0), 2);//Højre
-		spawnFire.SpawnSomethingAwesome (new Vector3 (posX - range, posY, posZ), new Vector3 (0, 270, 0), 2);//Ned
 		spawnFire.SpawnSomethingAwesome (new Vector3 (posX, posY, posZ + range), Vector3.zero, 2);//Venstre
 		spawnFire.SpawnSomethingAwesome (new Vector3 (posX + range, posY, posZ), new Vector3 (0, 90, 0), 2);//Op
 		spawnFire.SpawnSomethingAwesome (new Vector3 (posX, posY, posZ - range), new Vector3 (0, 180, 0), 2);//Højre
