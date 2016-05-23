@@ -75,25 +75,23 @@ public class hero : MonoBehaviour {
 
 		// Rotate
 		if (movement != Vector3.zero) {
-			//transform.Rotate (0, rotspeed, 0);
-			//rb.MoveRotation (Quaternion.Euler (Vector3.zero));
-			//Debug.Log (movement);
 			string moveStr = movement.x + "," + movement.y + "," + movement.z;
-			//FIXME sæt tallene rigtigt
+
 			switch (moveStr) {
-			case "1,0,0":
-				rb.MoveRotation (Quaternion.Euler (new Vector3 (0f, 3000f, 0f)));
+			case "0,0,1"://Venstre
+				rb.MoveRotation (Quaternion.Euler (0f, 0f, 0f));
 				break;
-			case "-1,0,0":
-				rb.MoveRotation (Quaternion.Euler (new Vector3 (0f, 100f, 0f)));
+			case "1,0,0"://op
+				rb.MoveRotation (Quaternion.Euler (0f, 90f, 0f));
 				break;
-			case "0,0,1":
-				rb.MoveRotation (Quaternion.Euler (new Vector3 (0f, 2000f, 0f)));
+			case "0,0,-1"://Højre
+				rb.MoveRotation (Quaternion.Euler (0f, 180f, 0f));
 				break;
-			case "0,0,-1":
-				rb.MoveRotation (Quaternion.Euler (new Vector3 (0f, 0f, 0f)));
+			case "-1,0,0"://ned
+				rb.MoveRotation (Quaternion.Euler (0f, 270f, 0f));
 				break;
 			default:
+				//FIXME sæt rotation som en kombi af ovenstående
 				break;
 			}
 		}
