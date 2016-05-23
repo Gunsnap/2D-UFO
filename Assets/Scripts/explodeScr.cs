@@ -2,7 +2,6 @@
 using System.Collections;
 
 public class explodeScr : MonoBehaviour {
-	public float explodeSec = 2.5f;
 	public float putTime;
 	public float bombDelay = 3.5f;
 	public float timeNow;
@@ -21,38 +20,32 @@ public class explodeScr : MonoBehaviour {
 
 	void Update () {
 		timeNow = Time.time;
-		if (timeNow > putTime + bombDelay) {
+		if (timeNow > putTime + bombDelay)
 			removeBomb ();
-		}
 	}
 
 	public void removeBomb () {
-		Debug.Log ("Fjern bombe");
 		blastHallWithFire ();
 		DestroyObject (this.gameObject);
 	}
 
 	public void blastHallWithFire (float range = 3) {
-		float posX = BombPosition.x;
-		float posY = BombPosition.y;
-		float posZ = BombPosition.z;
-
 		//Center
-		spawnFire.SpawnSomethingAwesome (new Vector3 (posX, posY, posZ), Vector3.zero);
+		spawnFire.SpawnSomethingAwesome (BombPosition, Vector3.zero);
 
 		//Mid
 		for (float i = 0; i < range; i++) {
-			spawnFire.SpawnSomethingAwesome (new Vector3 (posX, posY, posZ + i), Vector3.zero, 1);//Venstre
-			spawnFire.SpawnSomethingAwesome (new Vector3 (posX + i, posY, posZ), new Vector3 (0, 90, 0), 1);//Op
-			spawnFire.SpawnSomethingAwesome (new Vector3 (posX, posY, posZ - i), new Vector3 (0, 180, 0), 1);//Højre
-			spawnFire.SpawnSomethingAwesome (new Vector3 (posX - i, posY, posZ), new Vector3 (0, 270, 0), 1);//Ned
+			spawnFire.SpawnSomethingAwesome (BombPosition + new Vector3 (0, 0, i), Vector3.zero, 1);//Venstre
+			spawnFire.SpawnSomethingAwesome (BombPosition + new Vector3 (i, 0, 0), new Vector3 (0, 90, 0), 1);//Op
+			spawnFire.SpawnSomethingAwesome (BombPosition + new Vector3 (0, 0, -i), new Vector3 (0, 180, 0), 1);//Højre
+			spawnFire.SpawnSomethingAwesome (BombPosition + new Vector3 (0 - i, 0, 0), new Vector3 (0, 270, 0), 1);//Ned
 		}
 
 		//End
-		spawnFire.SpawnSomethingAwesome (new Vector3 (posX, posY, posZ + range), Vector3.zero, 2);//Venstre
-		spawnFire.SpawnSomethingAwesome (new Vector3 (posX + range, posY, posZ), new Vector3 (0, 90, 0), 2);//Op
-		spawnFire.SpawnSomethingAwesome (new Vector3 (posX, posY, posZ - range), new Vector3 (0, 180, 0), 2);//Højre
-		spawnFire.SpawnSomethingAwesome (new Vector3 (posX - range, posY, posZ), new Vector3 (0, 270, 0), 2);//Ned
+		spawnFire.SpawnSomethingAwesome (BombPosition + new Vector3 (0, 0, range), Vector3.zero, 2);//Venstre
+		spawnFire.SpawnSomethingAwesome (BombPosition + new Vector3 (range, 0, 0), new Vector3 (0, 90, 0), 2);//Op
+		spawnFire.SpawnSomethingAwesome (BombPosition + new Vector3 (0, 0, -range), new Vector3 (0, 180, 0), 2);//Højre
+		spawnFire.SpawnSomethingAwesome (BombPosition + new Vector3 (0 - range, 0, 0), new Vector3 (0, 270, 0), 2);//Ned
 	}
 
 }
