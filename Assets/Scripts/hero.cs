@@ -47,7 +47,6 @@ public class hero : MonoBehaviour {
 
 		var PlayerObject = GameObject.Find ("Player1");
 		Vector3 PlayerPos = PlayerObject.transform.position;
-		Debug.Log (PlayerPos);
 
 		// Bomb
 		if (SekTidGemt < SekTid) {
