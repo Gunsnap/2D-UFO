@@ -2,14 +2,14 @@
 using System.Collections;
 
 public class Flamme : MonoBehaviour {
-	float endTime = 1f;
 
+	// Use this for initialization
 	void Start () {
-		endTime += Time.time;
+	
 	}
-
+	
+	// Update is called once per frame
 	void Update () {
-		if (Time.time > endTime)
-			DestroyObject (this.gameObject);
+	
 	}
 }
